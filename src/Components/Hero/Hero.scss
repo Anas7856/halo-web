@@ -1,5 +1,5 @@
 .Hero {
-  height: 100vh;
+  height: 100vh !important;
   overflow: hidden;
   width: 100%;
   position: relative;
@@ -365,6 +365,8 @@
 
   // MOBILE STYLES (max-width: 767px)
   @media (max-width: 767px) {
+    .Hero {
+    }
     .hero-header {
       padding: 15px 20px;
       margin-top: 15px;
@@ -470,13 +472,13 @@
     .hero-bottom {
       padding-right: 20px;
       padding-left: 20px;
-      bottom: 20px;
+      bottom: 40px;
       gap: 8px;
       justify-content: center;
 
       .hero-bottom-social-box {
-        height: 35px;
-        width: 35px;
+        height: 40px !important;
+        width: 40px !important;
 
         img {
           width: 14px;
@@ -485,9 +487,9 @@
       }
 
       button {
-        height: 35px;
+        height: 40px;
         width: 120px;
-        font-size: 13px;
+        font-size: 14px;
         gap: 8px;
 
         img {
@@ -500,88 +502,92 @@
 
   // SMALL MOBILE (max-width: 480px)
   @media (max-width: 480px) {
-    .hero-header {
-      padding: 12px 15px;
+    .Hero {
+      height: 100vh;
 
-      button {
-        height: 34px;
-        width: 75px;
-        font-size: 11px;
-      }
+      .hero-header {
+        padding: 12px 15px;
 
-      .join-button {
-        width: 110px;
-        font-size: 10px;
-      }
-    }
+        button {
+          height: 34px;
+          width: 75px;
+          font-size: 11px;
+        }
 
-    .hero-logo-img {
-      width: 150px;
-    }
-
-    video {
-      width: 95vw;
-      height: 95vw;
-    }
-
-    .form-container {
-      width: 92%;
-      padding: 20px 20px 18px 20px;
-
-      &.success {
-        width: 90%;
-        padding: 35px 20px;
-      }
-    }
-
-    .waitlist-form {
-      gap: 14px;
-
-      input,
-      select,
-      textarea {
-        font-size: 13px;
-      }
-    }
-
-    .success-message {
-      h2 {
-        font-size: 22px;
-      }
-
-      .thank-you {
-        font-size: 13px;
-      }
-
-      .follow-up {
-        font-size: 11px;
-      }
-    }
-
-    .hero-bottom {
-      padding: 0 15px;
-      bottom: 15px;
-      gap: 6px;
-      flex-wrap: wrap;
-
-      .hero-bottom-social-box {
-        height: 32px;
-        width: 32px;
-
-        img {
-          width: 13px;
-          height: 13px;
+        .join-button {
+          width: 110px;
+          font-size: 10px;
         }
       }
 
-      button {
-        height: 32px;
-        width: 110px;
-        font-size: 12px;
+      .hero-logo-img {
+        width: 150px;
+      }
 
-        img {
-          width: 15px;
-          height: 15px;
+      video {
+        width: 95vw;
+        height: 95vw;
+      }
+
+      .form-container {
+        width: 92%;
+        padding: 20px 20px 18px 20px;
+
+        &.success {
+          width: 90%;
+          padding: 35px 20px;
+        }
+      }
+
+      .waitlist-form {
+        gap: 14px;
+
+        input,
+        select,
+        textarea {
+          font-size: 13px;
+        }
+      }
+
+      .success-message {
+        h2 {
+          font-size: 22px;
+        }
+
+        .thank-you {
+          font-size: 13px;
+        }
+
+        .follow-up {
+          font-size: 11px;
+        }
+      }
+
+      .hero-bottom {
+        padding: 0 15px;
+        bottom: 25px !important;
+        gap: 6px;
+        flex-wrap: wrap;
+
+        .hero-bottom-social-box {
+          height: 32px;
+          width: 32px;
+
+          img {
+            width: 13px;
+            height: 13px;
+          }
+        }
+
+        button {
+          height: 32px;
+          width: 110px;
+          font-size: 12px;
+
+          img {
+            width: 15px;
+            height: 15px;
+          }
         }
       }
     }
