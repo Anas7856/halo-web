@@ -181,12 +181,11 @@ const Hero = () => {
       )}
       <div className="hero-bottom">
         <div className="hero-bottom-social-box">
-          <a href="" target="_blank" rel="noopener noreferrer">
-            <img src={fblogo} alt="" />
-          </a>
-        </div>
-        <div className="hero-bottom-social-box">
-          <a href="" target="_blank" rel="noopener noreferrer">
+          <a
+            href="https://www.instagram.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <img src={instalogo} alt="" />
           </a>
         </div>
