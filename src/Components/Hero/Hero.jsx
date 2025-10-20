@@ -5,10 +5,10 @@ import logo from "../../assets/logo.png";
 import { ChevronDown, ArrowLeft } from "lucide-react";
 import fblogo from "../../assets/facebook logo (1).png";
 import instalogo from "../../assets/hugeicons_instagram.png";
-
 import linkedinlogo from "../../assets/bxl_linkedin (1).png";
 import whatsapplogo from "../../assets/famicons_logo-whatsapp.png";
 import maillogo from "../../assets/oui_email.png";
+import emailjs from "@emailjs/browser";
 
 const Hero = () => {
   const socialData = [
@@ -20,8 +20,10 @@ const Hero = () => {
   const [animate, setAnimate] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const buttonRef = useRef(null);
   const logoRef = useRef(null);
+  const formRef = useRef(null);
 
   const handleJoinClick = () => {
     if (!logoRef.current || !buttonRef.current) return;
@@ -60,7 +62,34 @@ const Hero = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setShowSuccess(true);
+    setIsSubmitting(true);
+
+    // EmailJS configuration
+    // Replace these with your actual EmailJS credentials
+    const serviceId = "service_97bbjw6";
+    const templateId = "template_utjpo7d";
+    const publicKey = "9sx0QbVo0cHFGUvvd";
+
+    emailjs
+      .sendForm(serviceId, templateId, formRef.current, publicKey)
+      .then((result) => {
+        console.log("Email sent successfully:", result.text);
+        setShowSuccess(true);
+        setIsSubmitting(false);
+      })
+      .catch((error) => {
+        console.error("Email send failed:", error.text);
+        alert("Failed to send request. Please try again.");
+        setIsSubmitting(false);
+      });
+  };
+
+  const handleWhatsAppClick = () => {
+    const phoneNumber = "971581832670"; // Remove spaces and special characters
+    const message = encodeURIComponent(
+      "Hello! I would like to discuss a project with HAGAWeb."
+    );
+    window.open(`https://wa.me/${phoneNumber}?text=${message}`, "_blank");
   };
 
   return (
@@ -93,26 +122,45 @@ const Hero = () => {
           }`}
         >
           {!showSuccess ? (
-            <form className="waitlist-form" onSubmit={handleSubmit}>
-              <input type="text" placeholder="Name" required />
-              <input type="email" placeholder="Email" required />
-              <input type="text" placeholder="Company / Brand" />
-              <select required>
+            <form
+              ref={formRef}
+              className="waitlist-form"
+              onSubmit={handleSubmit}
+            >
+              <input type="text" name="user_name" placeholder="Name" required />
+              <input
+                type="email"
+                name="user_email"
+                placeholder="Email"
+                required
+              />
+              <input type="text" name="company" placeholder="Company / Brand" />
+              <select name="project_type" required>
                 <option value="">Project Type</option>
                 <option value="web">Web Design</option>
                 <option value="brand">Brand Identity</option>
                 <option value="ui">UI / UX</option>
               </select>
               <textarea
+                name="message"
                 placeholder="Tell us about your project or vision"
                 rows={4}
               ></textarea>
               <div className="form-buttons">
-                <button type="button" onClick={handleBack} className="back-btn">
+                <button
+                  type="button"
+                  onClick={handleBack}
+                  className="back-btn"
+                  disabled={isSubmitting}
+                >
                   <ArrowLeft size={16} /> Back
                 </button>
-                <button type="submit" className="send-btn">
-                  Send Request
+                <button
+                  type="submit"
+                  className="send-btn"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? "Sending..." : "Send Request"}
                 </button>
               </div>
             </form>
@@ -132,14 +180,36 @@ const Hero = () => {
         </div>
       )}
       <div className="hero-bottom">
-        {socialData.map((index, items) => {
-          return (
-            <div key={index} className="hero-bottom-social-box">
-              <img src={index.img} alt="" />
-            </div>
-          );
-        })}
-        <button>
+        <div className="hero-bottom-social-box">
+          <a href="" target="_blank" rel="noopener noreferrer">
+            <img src={fblogo} alt="" />
+          </a>
+        </div>
+        <div className="hero-bottom-social-box">
+          <a href="" target="_blank" rel="noopener noreferrer">
+            <img src={instalogo} alt="" />
+          </a>
+        </div>
+        <div className="hero-bottom-social-box">
+          <a
+            href="https://www.linkedin.com/showcase/halo-web/?viewAsMember=true"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img src={linkedinlogo} alt="" />
+          </a>
+        </div>
+        <div className="hero-bottom-social-box">
+          <a
+            href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox?compose=GTvVlcSDbtkcZmZGLHqTrQKxbqdbRRgKvDlSpLpmDqlRsJpXXmrRBKTvqzbCcJZfHwQQVCWwcvNNx"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img src={maillogo} alt="" />
+          </a>
+        </div>
+
+        <button onClick={handleWhatsAppClick}>
           Whatsapp
           <img src={whatsapplogo} alt="" />
         </button>

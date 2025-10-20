@@ -1,5 +1,5 @@
 .Hero {
-  height: 100vh !important;
+  height: 100vh;
   overflow: hidden;
   width: 100%;
   position: relative;
@@ -365,8 +365,6 @@
 
   // MOBILE STYLES (max-width: 767px)
   @media (max-width: 767px) {
-    .Hero {
-    }
     .hero-header {
       padding: 15px 20px;
       margin-top: 15px;
@@ -472,7 +470,7 @@
     .hero-bottom {
       padding-right: 20px;
       padding-left: 20px;
-      bottom: 40px;
+      bottom: 50px;
       gap: 8px;
       justify-content: center;
 
@@ -503,8 +501,8 @@
   // SMALL MOBILE (max-width: 480px)
   @media (max-width: 480px) {
     .Hero {
-      height: 100vh;
-
+      height: 50vh !important;
+      overflow: hidden !important;
       .hero-header {
         padding: 12px 15px;
 
